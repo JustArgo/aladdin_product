@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.maiquan.aladdin.mapper.ProductSkuMapper" >
+  <resultMap id="BaseResultMap" type="com.maiquan.aladdin.domain.ProductSku" >
+    <id column="ID" property="ID" jdbcType="INTEGER" />
+    <result column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="productID" property="productID" jdbcType="INTEGER" />
+    <result column="skuPrice" property="skuPrice" jdbcType="BIGINT" />
+    <result column="applyPrice" property="applyPrice" jdbcType="BIGINT" />
+    <result column="skuImg" property="skuImg" jdbcType="VARCHAR" />
+    <result column="skuStock" property="skuStock" jdbcType="INTEGER" />
+    <result column="createTime" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, uid, productID, skuPrice, applyPrice, skuImg, skuStock, createTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_product_sku
+    where ID = #{ID,jdbcType=INTEGER}
+  </select>
+  <select id="selectByProductID" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+	select 
+    <include refid="Base_Column_List" />
+    from t_product_sku
+    where productID = #{productID,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_product_sku
+    where ID = #{ID,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.maiquan.aladdin.domain.ProductSku" >
+    insert into t_product_sku (ID, uid, productID, 
+      skuPrice, applyPrice, skuImg, 
+      skuStock, createTime)
+    values (#{ID,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{productID,jdbcType=INTEGER}, 
+      #{skuPrice,jdbcType=BIGINT}, #{applyPrice,jdbcType=BIGINT}, #{skuImg,jdbcType=VARCHAR}, 
+      #{skuStock,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.maiquan.aladdin.domain.ProductSku" >
+    insert into t_product_sku
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ID != null" >
+        ID,
+      </if>
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="productID != null" >
+        productID,
+      </if>
+      <if test="skuPrice != null" >
+        skuPrice,
+      </if>
+      <if test="applyPrice != null" >
+        applyPrice,
+      </if>
+      <if test="skuImg != null" >
+        skuImg,
+      </if>
+      <if test="skuStock != null" >
+        skuStock,
+      </if>
+      <if test="createTime != null" >
+        createTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ID != null" >
+        #{ID,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="productID != null" >
+        #{productID,jdbcType=INTEGER},
+      </if>
+      <if test="skuPrice != null" >
+        #{skuPrice,jdbcType=BIGINT},
+      </if>
+      <if test="applyPrice != null" >
+        #{applyPrice,jdbcType=BIGINT},
+      </if>
+      <if test="skuImg != null" >
+        #{skuImg,jdbcType=VARCHAR},
+      </if>
+      <if test="skuStock != null" >
+        #{skuStock,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.maiquan.aladdin.domain.ProductSku" >
+    update t_product_sku
+    <set >
+      <if test="uid != null" >
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="productID != null" >
+        productID = #{productID,jdbcType=INTEGER},
+      </if>
+      <if test="skuPrice != null" >
+        skuPrice = #{skuPrice,jdbcType=BIGINT},
+      </if>
+      <if test="applyPrice != null" >
+        applyPrice = #{applyPrice,jdbcType=BIGINT},
+      </if>
+      <if test="skuImg != null" >
+        skuImg = #{skuImg,jdbcType=VARCHAR},
+      </if>
+      <if test="skuStock != null" >
+        skuStock = #{skuStock,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        createTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.maiquan.aladdin.domain.ProductSku" >
+    update t_product_sku
+    set uid = #{uid,jdbcType=INTEGER},
+      productID = #{productID,jdbcType=INTEGER},
+      skuPrice = #{skuPrice,jdbcType=BIGINT},
+      applyPrice = #{applyPrice,jdbcType=BIGINT},
+      skuImg = #{skuImg,jdbcType=VARCHAR},
+      skuStock = #{skuStock,jdbcType=INTEGER},
+      createTime = #{createTime,jdbcType=TIMESTAMP}
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.maiquan.aladdin.mapper.ProductMapper" >
+  <resultMap id="BaseResultMap" type="com.maiquan.aladdin.domain.Product" >
+    <id column="ID" property="ID" jdbcType="INTEGER" />
+    <result column="brandID" property="brandID" jdbcType="INTEGER" />
+    <result column="categoryID" property="categoryID" jdbcType="INTEGER" />
+    <result column="supplyID" property="supplyID" jdbcType="INTEGER" />
+    <result column="shortName" property="shortName" jdbcType="VARCHAR" />
+    <result column="productName" property="productName" jdbcType="VARCHAR" />
+    <result column="sellDesc" property="sellDesc" jdbcType="VARCHAR" />
+    <result column="sellType" property="sellType" jdbcType="VARCHAR" />
+    <result column="productCode" property="productCode" jdbcType="VARCHAR" />
+    <result column="weight" property="weight" jdbcType="BIGINT" />
+    <result column="price" property="price" jdbcType="BIGINT" />
+    <result column="collects" property="collects" jdbcType="INTEGER" />
+    <result column="views" property="views" jdbcType="INTEGER" />
+    <result column="sellCount" property="sellCount" jdbcType="INTEGER" />
+    <result column="limitCount" property="limitCount" jdbcType="INTEGER" />
+    <result column="sortOrder" property="sortOrder" jdbcType="INTEGER" />
+    <result column="platform" property="platform" jdbcType="VARCHAR" />
+    <result column="minusStock" property="minusStock" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="createTime" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="updateTime" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, brandID, categoryID, supplyID, shortName, productName, sellDesc, sellType, productCode, 
+    weight, price, collects, views, sellCount, limitCount, sortOrder, platform, minusStock, 
+    status, uid, createTime, updateTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_product
+    where ID = #{ID,jdbcType=INTEGER}
+  </select>
+  <select id="selectByCondition" resultMap="BaseResultMap" parameterType="com.maiquan.aladdin.domain.Product">
+  	select 
+    <include refid="Base_Column_List" />
+    from t_product
+    <where>
+      <if test="brandID != null" >
+        AND brandID = #{brandID,jdbcType=INTEGER}
+      </if>
+      <if test="categoryID != null" >
+        AND categoryID = #{categoryID,jdbcType=INTEGER}
+      </if>
+      <if test="supplyID != null" >
+        AND supplyID = #{supplyID,jdbcType=INTEGER}
+      </if>
+      <if test="shortName != null" >
+        AND shortName = #{shortName,jdbcType=VARCHAR}
+      </if>
+      <if test="productName != null" >
+        AND productName = #{productName,jdbcType=VARCHAR}
+      </if>
+      <if test="sellDesc != null" >
+        AND sellDesc = #{sellDesc,jdbcType=VARCHAR}
+      </if>
+      <if test="sellType != null" >
+        AND sellType = #{sellType,jdbcType=VARCHAR}
+      </if>
+      <if test="productCode != null" >
+        AND productCode = #{productCode,jdbcType=VARCHAR}
+      </if>
+      <if test="weight != null" >
+        AND weight = #{weight,jdbcType=BIGINT}
+      </if>
+      <if test="price != null" >
+        AND price = #{price,jdbcType=BIGINT}
+      </if>
+      <if test="collects != null" >
+        AND collects = #{collects,jdbcType=INTEGER}
+      </if>
+      <if test="views != null" >
+        AND views = #{views,jdbcType=INTEGER}
+      </if>
+      <if test="sellCount != null" >
+        AND sellCount = #{sellCount,jdbcType=INTEGER}
+      </if>
+      <if test="limitCount != null" >
+        AND limitCount = #{limitCount,jdbcType=INTEGER}
+      </if>
+      <if test="sortOrder != null" >
+        AND sortOrder = #{sortOrder,jdbcType=INTEGER}
+      </if>
+      <if test="platform != null" >
+        AND platform = #{platform,jdbcType=VARCHAR}
+      </if>
+      <if test="minusStock != null" >
+        AND minusStock = #{minusStock,jdbcType=VARCHAR}
+      </if>
+      <if test="status != null" >
+        AND status = #{status,jdbcType=VARCHAR}
+      </if>
+      <if test="uid != null" >
+        AND uid = #{uid,jdbcType=INTEGER}
+      </if>
+      <if test="createTime != null" >
+        AND createTime = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="updateTime != null" >
+        AND updateTime = #{updateTime,jdbcType=TIMESTAMP}
+      </if>
+    </where>
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_product
+    where ID = #{ID,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.maiquan.aladdin.domain.Product" >
+    insert into t_product (ID, brandID, categoryID, 
+      supplyID, shortName, productName, 
+      sellDesc, sellType, productCode, 
+      weight, price, collects, 
+      views, sellCount, limitCount, 
+      sortOrder, platform, minusStock, 
+      status, uid, createTime, 
+      updateTime)
+    values (#{ID,jdbcType=INTEGER}, #{brandID,jdbcType=INTEGER}, #{categoryID,jdbcType=INTEGER}, 
+      #{supplyID,jdbcType=INTEGER}, #{shortName,jdbcType=VARCHAR}, #{productName,jdbcType=VARCHAR}, 
+      #{sellDesc,jdbcType=VARCHAR}, #{sellType,jdbcType=VARCHAR}, #{productCode,jdbcType=VARCHAR}, 
+      #{weight,jdbcType=BIGINT}, #{price,jdbcType=BIGINT}, #{collects,jdbcType=INTEGER}, 
+      #{views,jdbcType=INTEGER}, #{sellCount,jdbcType=INTEGER}, #{limitCount,jdbcType=INTEGER}, 
+      #{sortOrder,jdbcType=INTEGER}, #{platform,jdbcType=VARCHAR}, #{minusStock,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{uid,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.maiquan.aladdin.domain.Product" >
+    insert into t_product
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ID != null" >
+        ID,
+      </if>
+      <if test="brandID != null" >
+        brandID,
+      </if>
+      <if test="categoryID != null" >
+        categoryID,
+      </if>
+      <if test="supplyID != null" >
+        supplyID,
+      </if>
+      <if test="shortName != null" >
+        shortName,
+      </if>
+      <if test="productName != null" >
+        productName,
+      </if>
+      <if test="sellDesc != null" >
+        sellDesc,
+      </if>
+      <if test="sellType != null" >
+        sellType,
+      </if>
+      <if test="productCode != null" >
+        productCode,
+      </if>
+      <if test="weight != null" >
+        weight,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="collects != null" >
+        collects,
+      </if>
+      <if test="views != null" >
+        views,
+      </if>
+      <if test="sellCount != null" >
+        sellCount,
+      </if>
+      <if test="limitCount != null" >
+        limitCount,
+      </if>
+      <if test="sortOrder != null" >
+        sortOrder,
+      </if>
+      <if test="platform != null" >
+        platform,
+      </if>
+      <if test="minusStock != null" >
+        minusStock,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="createTime != null" >
+        createTime,
+      </if>
+      <if test="updateTime != null" >
+        updateTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ID != null" >
+        #{ID,jdbcType=INTEGER},
+      </if>
+      <if test="brandID != null" >
+        #{brandID,jdbcType=INTEGER},
+      </if>
+      <if test="categoryID != null" >
+        #{categoryID,jdbcType=INTEGER},
+      </if>
+      <if test="supplyID != null" >
+        #{supplyID,jdbcType=INTEGER},
+      </if>
+      <if test="shortName != null" >
+        #{shortName,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null" >
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="sellDesc != null" >
+        #{sellDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="sellType != null" >
+        #{sellType,jdbcType=VARCHAR},
+      </if>
+      <if test="productCode != null" >
+        #{productCode,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null" >
+        #{weight,jdbcType=BIGINT},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=BIGINT},
+      </if>
+      <if test="collects != null" >
+        #{collects,jdbcType=INTEGER},
+      </if>
+      <if test="views != null" >
+        #{views,jdbcType=INTEGER},
+      </if>
+      <if test="sellCount != null" >
+        #{sellCount,jdbcType=INTEGER},
+      </if>
+      <if test="limitCount != null" >
+        #{limitCount,jdbcType=INTEGER},
+      </if>
+      <if test="sortOrder != null" >
+        #{sortOrder,jdbcType=INTEGER},
+      </if>
+      <if test="platform != null" >
+        #{platform,jdbcType=VARCHAR},
+      </if>
+      <if test="minusStock != null" >
+        #{minusStock,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.maiquan.aladdin.domain.Product" >
+    update t_product
+    <set >
+      <if test="brandID != null" >
+        brandID = #{brandID,jdbcType=INTEGER},
+      </if>
+      <if test="categoryID != null" >
+        categoryID = #{categoryID,jdbcType=INTEGER},
+      </if>
+      <if test="supplyID != null" >
+        supplyID = #{supplyID,jdbcType=INTEGER},
+      </if>
+      <if test="shortName != null" >
+        shortName = #{shortName,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null" >
+        productName = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="sellDesc != null" >
+        sellDesc = #{sellDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="sellType != null" >
+        sellType = #{sellType,jdbcType=VARCHAR},
+      </if>
+      <if test="productCode != null" >
+        productCode = #{productCode,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null" >
+        weight = #{weight,jdbcType=BIGINT},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=BIGINT},
+      </if>
+      <if test="collects != null" >
+        collects = #{collects,jdbcType=INTEGER},
+      </if>
+      <if test="views != null" >
+        views = #{views,jdbcType=INTEGER},
+      </if>
+      <if test="sellCount != null" >
+        sellCount = #{sellCount,jdbcType=INTEGER},
+      </if>
+      <if test="limitCount != null" >
+        limitCount = #{limitCount,jdbcType=INTEGER},
+      </if>
+      <if test="sortOrder != null" >
+        sortOrder = #{sortOrder,jdbcType=INTEGER},
+      </if>
+      <if test="platform != null" >
+        platform = #{platform,jdbcType=VARCHAR},
+      </if>
+      <if test="minusStock != null" >
+        minusStock = #{minusStock,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null" >
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        createTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        updateTime = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.maiquan.aladdin.domain.Product" >
+    update t_product
+    set brandID = #{brandID,jdbcType=INTEGER},
+      categoryID = #{categoryID,jdbcType=INTEGER},
+      supplyID = #{supplyID,jdbcType=INTEGER},
+      shortName = #{shortName,jdbcType=VARCHAR},
+      productName = #{productName,jdbcType=VARCHAR},
+      sellDesc = #{sellDesc,jdbcType=VARCHAR},
+      sellType = #{sellType,jdbcType=VARCHAR},
+      productCode = #{productCode,jdbcType=VARCHAR},
+      weight = #{weight,jdbcType=BIGINT},
+      price = #{price,jdbcType=BIGINT},
+      collects = #{collects,jdbcType=INTEGER},
+      views = #{views,jdbcType=INTEGER},
+      sellCount = #{sellCount,jdbcType=INTEGER},
+      limitCount = #{limitCount,jdbcType=INTEGER},
+      sortOrder = #{sortOrder,jdbcType=INTEGER},
+      platform = #{platform,jdbcType=VARCHAR},
+      minusStock = #{minusStock,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      uid = #{uid,jdbcType=INTEGER},
+      createTime = #{createTime,jdbcType=TIMESTAMP},
+      updateTime = #{updateTime,jdbcType=TIMESTAMP}
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
+</mapper>
