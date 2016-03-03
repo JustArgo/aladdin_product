@@ -25,4 +25,7 @@
 	<dubbo:service interface="com.maiquan.aladdin.service.IProductDetailService" ref="productDetailService" protocol="dubbo"/>
 	<bean id="productDetailService" class="com.maiquan.aladdin.service.impl.ProductDetailServiceImpl"/>
 	
+	<dubbo:service interface="com.maiquan.aladdin.service.ICommentService" ref="commentService" protocol="dubbo"/>
+	<bean id="commentService" class="com.maiquan.aladdin.service.impl.CommentServiceImpl"/>
+	
 </beans>
