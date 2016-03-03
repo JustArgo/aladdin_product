@@ -21,6 +21,9 @@
 		
 	<import resource="classpath:dubbo.xml"/>
 	
+	<!-- 设置要扫描的包 -->	
+	<context:component-scan base-package="com.maiquan.aladdin"/>
+	
 	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">  
         <property name="locations">  
            <list>  
@@ -46,9 +49,6 @@
          </property>  
     </bean>
 	
-	<!-- 设置要扫描的包 -->	
-	<context:component-scan base-package="com.maiquan.aladdin"/>
-		
 	<!-- dataSource -->
 	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
 		<property name="driverClassName" value="${druid.driverClassName}"/>

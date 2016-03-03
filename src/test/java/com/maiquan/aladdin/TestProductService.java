@@ -5,10 +5,12 @@ import java.util.Date;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.maiquan.aladdin.domain.Product;
+import com.maiquan.aladdin.domain.ProductDetail;
 import com.maiquan.aladdin.service.IProductService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -18,6 +20,12 @@ public class TestProductService {
 	@Autowired
 	private IProductService productService;
 	
+	@Autowired
+	private RedisTemplate<String,Product> redisTemplate;
+	
+	@Autowired
+	private RedisTemplate<String,ProductDetail> detailTemplate;
+	
 	/**
 	 * 测试新增商品
 	 */
@@ -26,7 +34,7 @@ public class TestProductService {
 		
 		String[] status = new String[]{"UP#","DW#","DEL"};
 		
-		for(int i=3;i<=20;i++){
+		for(int i=222;i<=223;i++){
 			Product product = new Product();
 			product.setID(i);
 			product.setBrandID(1);
