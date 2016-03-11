@@ -7,7 +7,7 @@
   <version>0.2.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>comment</name>
+  <name>aladdin_product</name>
   <url>http://maven.apache.org</url>
 
   <properties>
@@ -28,6 +28,12 @@
 			<groupId>com.maiquan</groupId>
 			<artifactId>aladdin_comment</artifactId>
 			<version>0.2.0-SNAPSHOT</version>
+			<exclusions>
+				<exclusion>
+					<groupId>*</groupId>
+					<artifactId>*</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<!-- druid -->
@@ -234,11 +240,11 @@
 			<version>3.0.7.Final</version>
 		</dependency>
 
-		<dependency>
+<!-- 		<dependency>
 			<groupId>cglib</groupId>
 			<artifactId>cglib</artifactId>
 			<version>2.2.2</version>
-		</dependency>
+		</dependency> -->
 				
 
 		<dependency>
@@ -255,30 +261,16 @@
 
 	</dependencies>
 
-	<distributionManagement>
-		<repository>
-			<id>releases</id>
-			<name>Releases</name>
-			<url>http://121.199.3.89:8081/nexus/content/repositories/releases/</url>
-		</repository>
-		<snapshotRepository>
-			<id>snapshots</id>
-			<name>Snapshots</name>
-			<url>http://121.199.3.89:8081/nexus/content/repositories/snapshots/</url>
-		</snapshotRepository>
-	</distributionManagement>
-
 	<build>
 		<resources>
 			<resource>
 				<directory>src/main/java</directory>
 				<includes>
-					<include>**/*.properties</include>
 					<include>**/*.xml</include>
 				</includes>
 			</resource>
 			<resource>
-				<directory>src/main/resources/${config.dir}</directory>
+				<directory>src/main/resources</directory>
 				<includes>
 					<include>**/*.properties</include>
 					<include>**/*.xml</include>
@@ -298,26 +290,6 @@
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
-			<!-- 
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-dependency-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>copy</id>
-						<phase>install</phase>
-						<goals>
-							<goal>copy-dependencies</goal>
-						</goals>
-						<configuration>
-							<outputDirectory>
-								${project.build.directory}/lib
-							</outputDirectory>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			  -->
 			<plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
@@ -329,23 +301,5 @@
 		</plugins>
 	</build>
 	
-	<profiles>
-  	<profile>
-  		<id>local</id>
-  		<properties>
-  			<config.dir>local</config.dir>
-  		</properties>
-  		<activation>
-  			<activeByDefault>true</activeByDefault>
-  		</activation>
-  	</profile>
-  	<profile>
-  		<id>product</id>
-  		<properties>
-  			<config.dir>product</config.dir>
-  		</properties>
-  		
-  	</profile>
-  </profiles>
 	
 </project>

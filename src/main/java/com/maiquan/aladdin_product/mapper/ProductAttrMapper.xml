@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.maiquan.aladdin_product.mapper.ProductAttrMapper" >
+  <resultMap id="BaseResultMap" type="com.maiquan.aladdin_product.domain.ProductAttr" >
+    <id column="ID" property="ID" jdbcType="INTEGER" />
+    <result column="productID" property="productID" jdbcType="INTEGER" />
+    <result column="attrName" property="attrName" jdbcType="VARCHAR" />
+    <result column="sortOrder" property="sortOrder" jdbcType="INTEGER" />
+    <result column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="createTime" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, productID, attrName, sortOrder, uid, createTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_product_attr
+    where ID = #{ID,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_product_attr
+    where ID = #{ID,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.maiquan.aladdin_product.domain.ProductAttr" >
+    insert into t_product_attr (ID, productID, attrName, 
+      sortOrder, uid, createTime
+      )
+    values (#{ID,jdbcType=INTEGER}, #{productID,jdbcType=INTEGER}, #{attrName,jdbcType=VARCHAR}, 
+      #{sortOrder,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.maiquan.aladdin_product.domain.ProductAttr" >
+    insert into t_product_attr
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ID != null" >
+        ID,
+      </if>
+      <if test="productID != null" >
+        productID,
+      </if>
+      <if test="attrName != null" >
+        attrName,
+      </if>
+      <if test="sortOrder != null" >
+        sortOrder,
+      </if>
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="createTime != null" >
+        createTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ID != null" >
+        #{ID,jdbcType=INTEGER},
+      </if>
+      <if test="productID != null" >
+        #{productID,jdbcType=INTEGER},
+      </if>
+      <if test="attrName != null" >
+        #{attrName,jdbcType=VARCHAR},
+      </if>
+      <if test="sortOrder != null" >
+        #{sortOrder,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.maiquan.aladdin_product.domain.ProductAttr" >
+    update t_product_attr
+    <set >
+      <if test="productID != null" >
+        productID = #{productID,jdbcType=INTEGER},
+      </if>
+      <if test="attrName != null" >
+        attrName = #{attrName,jdbcType=VARCHAR},
+      </if>
+      <if test="sortOrder != null" >
+        sortOrder = #{sortOrder,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null" >
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        createTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.maiquan.aladdin_product.domain.ProductAttr" >
+    update t_product_attr
+    set productID = #{productID,jdbcType=INTEGER},
+      attrName = #{attrName,jdbcType=VARCHAR},
+      sortOrder = #{sortOrder,jdbcType=INTEGER},
+      uid = #{uid,jdbcType=INTEGER},
+      createTime = #{createTime,jdbcType=TIMESTAMP}
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectAttrNameByID" parameterType="java.lang.Integer" resultType="java.lang.String">
+  	select attrName 
+  	from t_product_attr
+  	where ID = #{ID,jdbcType=INTEGER}
+  </select>
+  <select id="selectByProductID" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  	select
+  	<include refid="Base_Column_List"/>
+  	from t_product_attr
+  	where productID = #{productID,jdbcType=INTEGER}
+  </select>
+</mapper>

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.maiquan.aladdin_product.mapper.ProductAttrValueMapper" >
+  <resultMap id="BaseResultMap" type="com.maiquan.aladdin_product.domain.ProductAttrValue" >
+    <id column="ID" property="ID" jdbcType="INTEGER" />
+    <result column="attrID" property="attrID" jdbcType="INTEGER" />
+    <result column="attrValue" property="attrValue" jdbcType="VARCHAR" />
+    <result column="attrValueImg" property="attrValueImg" jdbcType="VARCHAR" />
+    <result column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="sortOrder" property="sortOrder" jdbcType="INTEGER" />
+    <result column="createTime" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, attrID, attrValue, attrValueImg, uid, sortOrder, createTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_product_attr_value
+    where ID = #{ID,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_product_attr_value
+    where ID = #{ID,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.maiquan.aladdin_product.domain.ProductAttrValue" >
+    insert into t_product_attr_value (ID, attrID, attrValue, 
+      attrValueImg, uid, sortOrder, 
+      createTime)
+    values (#{ID,jdbcType=INTEGER}, #{attrID,jdbcType=INTEGER}, #{attrValue,jdbcType=VARCHAR}, 
+      #{attrValueImg,jdbcType=VARCHAR}, #{uid,jdbcType=INTEGER}, #{sortOrder,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.maiquan.aladdin_product.domain.ProductAttrValue" >
+    insert into t_product_attr_value
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ID != null" >
+        ID,
+      </if>
+      <if test="attrID != null" >
+        attrID,
+      </if>
+      <if test="attrValue != null" >
+        attrValue,
+      </if>
+      <if test="attrValueImg != null" >
+        attrValueImg,
+      </if>
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="sortOrder != null" >
+        sortOrder,
+      </if>
+      <if test="createTime != null" >
+        createTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ID != null" >
+        #{ID,jdbcType=INTEGER},
+      </if>
+      <if test="attrID != null" >
+        #{attrID,jdbcType=INTEGER},
+      </if>
+      <if test="attrValue != null" >
+        #{attrValue,jdbcType=VARCHAR},
+      </if>
+      <if test="attrValueImg != null" >
+        #{attrValueImg,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="sortOrder != null" >
+        #{sortOrder,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.maiquan.aladdin_product.domain.ProductAttrValue" >
+    update t_product_attr_value
+    <set >
+      <if test="attrID != null" >
+        attrID = #{attrID,jdbcType=INTEGER},
+      </if>
+      <if test="attrValue != null" >
+        attrValue = #{attrValue,jdbcType=VARCHAR},
+      </if>
+      <if test="attrValueImg != null" >
+        attrValueImg = #{attrValueImg,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null" >
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="sortOrder != null" >
+        sortOrder = #{sortOrder,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        createTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.maiquan.aladdin_product.domain.ProductAttrValue" >
+    update t_product_attr_value
+    set attrID = #{attrID,jdbcType=INTEGER},
+      attrValue = #{attrValue,jdbcType=VARCHAR},
+      attrValueImg = #{attrValueImg,jdbcType=VARCHAR},
+      uid = #{uid,jdbcType=INTEGER},
+      sortOrder = #{sortOrder,jdbcType=INTEGER},
+      createTime = #{createTime,jdbcType=TIMESTAMP}
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectAttrValueByID" parameterType="java.lang.Integer" resultType="java.lang.String">
+  	select attrValue
+  	from t_product_attr_value
+  	where ID = #{ID,jdbcType=INTEGER}
+  </select>
+  <select id="selectByAttrID" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  	select
+  	<include refid="Base_Column_List"/>
+  	from t_product_attr_value
+  	where attrID = #{attrID,jdbcType=INTEGER}
+  </select>
+</mapper>
