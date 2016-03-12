@@ -28,7 +28,7 @@
         <property name="locations">  
            <list>  
               <!-- 这里支持多种寻址方式：classpath和file -->
-              <value>classpath:db.properties</value>
+              <value>classpath:db-product.properties</value>
               <value>redis.properties</value>
             </list> 
         </property>  
@@ -37,7 +37,7 @@
     <bean id="jedisFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
     	<property name="hostName" value="${redis.host}"/>
     	<property name="port"      value="${redis.port}"/>
-    	<!-- <property name="password" value="${redis.password}"/> -->
+    	<property name="password" value="${redis.password}"/>
     </bean>
     
 	<bean id="jedisTemplate" class="org.springframework.data.redis.core.RedisTemplate">  

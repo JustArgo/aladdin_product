@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+				        http://www.springframework.org/schema/beans/spring-beans.xsd
+				        http://code.alibabatech.com/schema/dubbo
+				        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+	
+	<dubbo:application name="productProvider"/>
+	<dubbo:registry  protocol="zookeeper" address="zookeeper://115.29.249.236:2181" timeout="30000"/>
+	
+	<dubbo:protocol name="dubbo" host="120.25.70.70" port="20882"/>
+	<dubbo:protocol name="rest" port="8088" server="tomcat" contextpath="aladdin_product" host="120.25.70.70"/>
+	
+	<dubbo:service interface="com.maiquan.aladdin_product.service.IProductService" ref="productService" protocol="dubbo"/>
+	<bean id="productService" class="com.maiquan.aladdin_product.service.impl.ProductServiceImpl"/>
+	
+	<dubbo:service interface="com.maiquan.aladdin_product.service.IProductSkuService" ref="productSkuService" protocol="dubbo"/>
+	<bean id="productSkuService" class="com.maiquan.aladdin_product.service.impl.ProductSkuServiceImpl"/>
+	
+	<dubbo:service interface="com.maiquan.aladdin_product.service.IProductVoService" ref="productVoService" protocol="dubbo"/>
+	<bean id="productVoService" class="com.maiquan.aladdin_product.service.impl.ProductVoServiceImpl"/>
+	
+	<dubbo:service interface="com.maiquan.aladdin_product.service.IProductDetailService" ref="productDetailService" protocol="dubbo"/>
+	<bean id="productDetailService" class="com.maiquan.aladdin_product.service.impl.ProductDetailServiceImpl"/>
+	
+	<!-- 引用评论微服务 -->
+	<dubbo:reference id="commentService" interface="com.maiquan.aladdin_comment.service.ICommentService" protocol="dubbo" check="false" />
+	
+	<!-- 应用评论封装对象的微服务 -->
+	<dubbo:reference id="commentVoService" interface="com.maiquan.aladdin_comment.service.ICommentVoService" protocol="dubbo" check="false" />
+</beans>

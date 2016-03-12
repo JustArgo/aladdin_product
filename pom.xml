@@ -270,7 +270,7 @@
 				</includes>
 			</resource>
 			<resource>
-				<directory>src/main/resources</directory>
+				<directory>src/main/resources/${config.dir}</directory>
 				<includes>
 					<include>**/*.properties</include>
 					<include>**/*.xml</include>
@@ -300,6 +300,37 @@
             </plugin>
 		</plugins>
 	</build>
-	
+	<distributionManagement>
+		<repository>
+			<id>releases</id>
+			<name>Releases</name>
+			<url>http://121.199.3.89:8081/nexus/content/repositories/releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>snapshots</id>
+			<name>Snapshots</name>
+			<url>http://121.199.3.89:8081/nexus/content/repositories/snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<properties>
+				<config.dir>dev</config.dir>
+			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+		</profile>
+		<profile>
+			<id>pro</id>
+			<properties>
+				<config.dir>pro</config.dir>
+			</properties>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+		</profile>
+	</profiles>
 	
 </project>

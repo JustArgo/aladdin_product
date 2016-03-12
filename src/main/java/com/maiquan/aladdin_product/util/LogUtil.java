@@ -14,7 +14,9 @@ public class LogUtil {
 	public static void logInput(String serviceName,String methodName,String requestID,Object... params){
 		String paramStr = "";
 		for(int i=0;i<params.length;i++){
-			paramStr += params[i].toString()+" ";
+			if(params[i]!=null){
+				paramStr += params[i].toString()+" ";
+			}
 		}
 		
 		if(logger.isInfoEnabled()){
@@ -29,7 +31,9 @@ public class LogUtil {
 	public static void logOutput(String serviceName,String methodName,String requestID,Object... params) {
 		String paramStr = "";
 		for(int i=0;i<params.length;i++){
-			paramStr += params[i].toString()+" ";
+			if(params[i]!=null){
+				paramStr += params[i].toString()+" ";
+			}
 		}
 		
 		if(logger.isInfoEnabled()){
