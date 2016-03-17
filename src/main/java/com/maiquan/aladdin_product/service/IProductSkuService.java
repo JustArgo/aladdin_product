@@ -36,4 +36,12 @@ public interface IProductSkuService {
 	 */
 	List<ProductSkuAttr> getSkuAttrBySkuID(Integer skuID, String requestID);
 	
+	/**
+	 * 更新sku
+	 * @param productSku
+	 * @param requestID
+	 * @return
+	 */
+	int updateSku(ProductSku productSku, String requestID);
+	
 }

@@ -102,4 +102,19 @@ public class ProductSkuServiceImpl implements IProductSkuService{
 		return productSkuAttrs;
 	}
 
+	@Override
+	public int updateSku(ProductSku productSku, String requestID) {
+		
+		LogUtil.logInput("商品sku微服务","updateSku",requestID,productSku);
+		
+		if(productSku!=null){
+			productSkuMapper.updateByPrimaryKeySelective(productSku);
+			productSkuDao.removeProductSku(productSku.getID());
+		}
+		
+		LogUtil.logOutput("商品sku微服务","updateSku",requestID,"无");
+		
+		return 0;
+	}
+
 }

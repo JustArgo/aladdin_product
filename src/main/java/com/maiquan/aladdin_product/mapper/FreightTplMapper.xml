@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.maiquan.aladdin_product.mapper.FreightTplMapper" >
+  <resultMap id="BaseResultMap" type="com.maiquan.aladdin_product.domain.FreightTpl" >
+    <id column="ID" property="ID" jdbcType="INTEGER" />
+    <result column="freightName" property="freightName" jdbcType="VARCHAR" />
+    <result column="freightType" property="freightType" jdbcType="VARCHAR" />
+    <result column="firstFreight" property="firstFreight" jdbcType="BIGINT" />
+    <result column="secFreight" property="secFreight" jdbcType="BIGINT" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="fullSum" property="fullSum" jdbcType="BIGINT" />
+    <result column="fullStatus" property="fullStatus" jdbcType="VARCHAR" />
+    <result column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="supplyID" property="supplyID" jdbcType="INTEGER" />
+    <result column="sortOrder" property="sortOrder" jdbcType="INTEGER" />
+    <result column="createTime" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="updateTime" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="delTime" property="delTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, freightName, freightType, firstFreight, secFreight, status, fullSum, fullStatus, 
+    uid, supplyID, sortOrder, createTime, updateTime, delTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_freight_tpl
+    where ID = #{ID,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_freight_tpl
+    where ID = #{ID,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.maiquan.aladdin_product.domain.FreightTpl" >
+    insert into t_freight_tpl (ID, freightName, freightType, 
+      firstFreight, secFreight, status, 
+      fullSum, fullStatus, uid, 
+      supplyID, sortOrder, createTime, 
+      updateTime, delTime)
+    values (#{ID,jdbcType=INTEGER}, #{freightName,jdbcType=VARCHAR}, #{freightType,jdbcType=VARCHAR}, 
+      #{firstFreight,jdbcType=BIGINT}, #{secFreight,jdbcType=BIGINT}, #{status,jdbcType=VARCHAR}, 
+      #{fullSum,jdbcType=BIGINT}, #{fullStatus,jdbcType=VARCHAR}, #{uid,jdbcType=INTEGER}, 
+      #{supplyID,jdbcType=INTEGER}, #{sortOrder,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{delTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.maiquan.aladdin_product.domain.FreightTpl" >
+    insert into t_freight_tpl
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ID != null" >
+        ID,
+      </if>
+      <if test="freightName != null" >
+        freightName,
+      </if>
+      <if test="freightType != null" >
+        freightType,
+      </if>
+      <if test="firstFreight != null" >
+        firstFreight,
+      </if>
+      <if test="secFreight != null" >
+        secFreight,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="fullSum != null" >
+        fullSum,
+      </if>
+      <if test="fullStatus != null" >
+        fullStatus,
+      </if>
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="supplyID != null" >
+        supplyID,
+      </if>
+      <if test="sortOrder != null" >
+        sortOrder,
+      </if>
+      <if test="createTime != null" >
+        createTime,
+      </if>
+      <if test="updateTime != null" >
+        updateTime,
+      </if>
+      <if test="delTime != null" >
+        delTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ID != null" >
+        #{ID,jdbcType=INTEGER},
+      </if>
+      <if test="freightName != null" >
+        #{freightName,jdbcType=VARCHAR},
+      </if>
+      <if test="freightType != null" >
+        #{freightType,jdbcType=VARCHAR},
+      </if>
+      <if test="firstFreight != null" >
+        #{firstFreight,jdbcType=BIGINT},
+      </if>
+      <if test="secFreight != null" >
+        #{secFreight,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="fullSum != null" >
+        #{fullSum,jdbcType=BIGINT},
+      </if>
+      <if test="fullStatus != null" >
+        #{fullStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="supplyID != null" >
+        #{supplyID,jdbcType=INTEGER},
+      </if>
+      <if test="sortOrder != null" >
+        #{sortOrder,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delTime != null" >
+        #{delTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.maiquan.aladdin_product.domain.FreightTpl" >
+    update t_freight_tpl
+    <set >
+      <if test="freightName != null" >
+        freightName = #{freightName,jdbcType=VARCHAR},
+      </if>
+      <if test="freightType != null" >
+        freightType = #{freightType,jdbcType=VARCHAR},
+      </if>
+      <if test="firstFreight != null" >
+        firstFreight = #{firstFreight,jdbcType=BIGINT},
+      </if>
+      <if test="secFreight != null" >
+        secFreight = #{secFreight,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="fullSum != null" >
+        fullSum = #{fullSum,jdbcType=BIGINT},
+      </if>
+      <if test="fullStatus != null" >
+        fullStatus = #{fullStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null" >
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="supplyID != null" >
+        supplyID = #{supplyID,jdbcType=INTEGER},
+      </if>
+      <if test="sortOrder != null" >
+        sortOrder = #{sortOrder,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        createTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        updateTime = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delTime != null" >
+        delTime = #{delTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.maiquan.aladdin_product.domain.FreightTpl" >
+    update t_freight_tpl
+    set freightName = #{freightName,jdbcType=VARCHAR},
+      freightType = #{freightType,jdbcType=VARCHAR},
+      firstFreight = #{firstFreight,jdbcType=BIGINT},
+      secFreight = #{secFreight,jdbcType=BIGINT},
+      status = #{status,jdbcType=VARCHAR},
+      fullSum = #{fullSum,jdbcType=BIGINT},
+      fullStatus = #{fullStatus,jdbcType=VARCHAR},
+      uid = #{uid,jdbcType=INTEGER},
+      supplyID = #{supplyID,jdbcType=INTEGER},
+      sortOrder = #{sortOrder,jdbcType=INTEGER},
+      createTime = #{createTime,jdbcType=TIMESTAMP},
+      updateTime = #{updateTime,jdbcType=TIMESTAMP},
+      delTime = #{delTime,jdbcType=TIMESTAMP}
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
+</mapper>

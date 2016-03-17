@@ -69,12 +69,25 @@ public class ProductSkuDaoImpl implements IProductSkuDao{
 	@Override
 	public void removeProductSku(Integer productSkuID) {
 		
-		redisTemplate.delete("productSku:"+productSkuID);
-		
+		Set<String> skus = redisTemplate.keys("sku:"+productSkuID+":*");
+		String[] keys = new String[skus.size()];
+		if(keys.length!=0){
+			skus.toArray(keys);
+			redisTemplate.delete(keys[0]);
+			
+			//同时移除对应的skupid:pid
+			String pid = keys[0].substring(keys[0].lastIndexOf(":")+1);
+			redisTemplate.delete("skupid:"+pid);
+		}
 	}
 
 	@Override
 	public void removeAllProductSku() {
-		
+		Set<String> skus = redisTemplate.keys("sku:*:*");
+		String[] keys = new String[skus.size()];
+		skus.toArray(keys);
+		for(int i=0;i<keys.length;i++){
+			redisTemplate.delete(keys[i]);
+		}
 	}
 }

@@ -25,6 +25,9 @@
 	<dubbo:service interface="com.maiquan.aladdin_product.service.IProductDetailService" ref="productDetailService" protocol="dubbo"/>
 	<bean id="productDetailService" class="com.maiquan.aladdin_product.service.impl.ProductDetailServiceImpl"/>
 	
+	<dubbo:service interface="com.maiquan.aladdin_product.service.IPostFeeService" ref="postFeeService" protocol="dubbo"/>
+	<bean id="postFeeService" class="com.maiquan.aladdin_product.service.impl.PostFeeServiceImpl"/>
+	
 	<!-- 引用评论微服务 -->
 	<dubbo:reference id="commentService" interface="com.maiquan.aladdin_comment.service.ICommentService" protocol="dubbo" check="false" />
 	

@@ -1,6 +1,7 @@
 package com.maiquan.aladdin_product.service.impl;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -164,6 +165,55 @@ public class ProductServiceImpl implements IProductService{
 		LogUtil.logOutput("商品微服务","getAttrValuesByAttrID",requestID,productAttrValues);
 		
 		return productAttrValues;
+	}
+
+	@Override
+	public int collectProduct(String mqID, Integer productID, String requestID) {
+		
+		LogUtil.logInput("商品微服务", "collectProduct", requestID, mqID, productID);
+		
+		Product product = productMapper.selectByPrimaryKey(productID);
+		if(product!=null){
+			if(product.getCollects()==null){
+				product.setCollects(1);
+			}else{
+				product.setCollects(product.getCollects()+1);
+			}
+			productMapper.updateByPrimaryKeySelective(product);
+			//还要更新用户的收藏行为
+		}
+		
+		LogUtil.logOutput("商品微服务", "collectProduct", requestID, 0);
+		
+		return 0;
+	}
+
+	@Override
+	public int uncollectProduct(String mqID, Integer productID, String requestID) {
+
+		LogUtil.logInput("商品微服务", "uncollectProduct", requestID, mqID, productID);
+		
+		Product product = productMapper.selectByPrimaryKey(productID);
+		if(product!=null){
+			if(product.getCollects()!=null && product.getCollects()!=0){
+				product.setCollects(product.getCollects()-1);
+			}
+			productMapper.updateByPrimaryKeySelective(product);
+			//还要更新用户的收藏行为
+		}
+		
+		LogUtil.logOutput("商品微服务", "uncollectProduct", requestID, 0);
+		
+		return 0;
+	}
+
+	@Override
+	public List<Product> getProductProductListByIDs(Integer[] ids, String requestID) {
+		
+		LogUtil.logInput("商品微服务","getProductListByIDs",requestID,ids);
+		
+		
+		return null;
 	}
 	
 	

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.maiquan.aladdin_product.mapper.ProductFreightMapper" >
+  <resultMap id="BaseResultMap" type="com.maiquan.aladdin_product.domain.ProductFreight" >
+    <id column="ID" property="ID" jdbcType="INTEGER" />
+    <result column="productID" property="productID" jdbcType="INTEGER" />
+    <result column="freightTplID" property="freightTplID" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="supplyID" property="supplyID" jdbcType="INTEGER" />
+    <result column="createTime" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, productID, freightTplID, status, uid, supplyID, createTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_product_freight
+    where ID = #{ID,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_product_freight
+    where ID = #{ID,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.maiquan.aladdin_product.domain.ProductFreight" >
+    insert into t_product_freight (ID, productID, freightTplID, 
+      status, uid, supplyID, 
+      createTime)
+    values (#{ID,jdbcType=INTEGER}, #{productID,jdbcType=INTEGER}, #{freightTplID,jdbcType=INTEGER}, 
+      #{status,jdbcType=VARCHAR}, #{uid,jdbcType=INTEGER}, #{supplyID,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.maiquan.aladdin_product.domain.ProductFreight" >
+    insert into t_product_freight
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ID != null" >
+        ID,
+      </if>
+      <if test="productID != null" >
+        productID,
+      </if>
+      <if test="freightTplID != null" >
+        freightTplID,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="supplyID != null" >
+        supplyID,
+      </if>
+      <if test="createTime != null" >
+        createTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ID != null" >
+        #{ID,jdbcType=INTEGER},
+      </if>
+      <if test="productID != null" >
+        #{productID,jdbcType=INTEGER},
+      </if>
+      <if test="freightTplID != null" >
+        #{freightTplID,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="supplyID != null" >
+        #{supplyID,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.maiquan.aladdin_product.domain.ProductFreight" >
+    update t_product_freight
+    <set >
+      <if test="productID != null" >
+        productID = #{productID,jdbcType=INTEGER},
+      </if>
+      <if test="freightTplID != null" >
+        freightTplID = #{freightTplID,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null" >
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="supplyID != null" >
+        supplyID = #{supplyID,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        createTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.maiquan.aladdin_product.domain.ProductFreight" >
+    update t_product_freight
+    set productID = #{productID,jdbcType=INTEGER},
+      freightTplID = #{freightTplID,jdbcType=INTEGER},
+      status = #{status,jdbcType=VARCHAR},
+      uid = #{uid,jdbcType=INTEGER},
+      supplyID = #{supplyID,jdbcType=INTEGER},
+      createTime = #{createTime,jdbcType=TIMESTAMP}
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
+  <select id="selectByProductID" parameterType="java.lang.Integer" resultType="com.maiquan.aladdin_product.domain.ProductFreight">
+  	select 
+  	<include refid="Base_Column_List"/>
+  	from t_product_freight
+	where productID = #{productID,jdbcType=INTEGER} 
+	AND status = 'USE'
+  </select>
+</mapper>

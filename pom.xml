@@ -26,7 +26,7 @@
 
 		<dependency>
 			<groupId>com.maiquan</groupId>
-			<artifactId>aladdin_comment</artifactId>
+			<artifactId>aladdin_base</artifactId>
 			<version>0.2.0-SNAPSHOT</version>
 			<exclusions>
 				<exclusion>

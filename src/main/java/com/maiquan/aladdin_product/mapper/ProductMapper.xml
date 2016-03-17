@@ -362,4 +362,15 @@
       updateTime = #{updateTime,jdbcType=TIMESTAMP}
     where ID = #{ID,jdbcType=INTEGER}
   </update>
+  <select id="selectProductListByIDs" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from t_product
+    <where>
+    	id in 
+    	<foreach collection="array" open="(" separator="," close=")" item="id">
+    		#{id,jdbcType=INTEGER}
+    	</foreach>
+    </where>
+  </select>
 </mapper>
